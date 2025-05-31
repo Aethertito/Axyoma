@@ -3,7 +3,12 @@
 <div style="display: flex;">
     {% include "public/components/sidebar.html" %}
     <main style="flex: 1; padding: 2rem;">
-        <h2>Bienvenido</h2>
-        <p>{{ message }}</p>
+        <h2>
+            {% if section == "seccion1" %}Sección 1
+            {% elif section == "seccion2" %}Sección 2
+            {% else %}Inicio
+            {% endif %}
+        </h2>
+        <p>{{ content }}</p>
     </main>
 </div>
