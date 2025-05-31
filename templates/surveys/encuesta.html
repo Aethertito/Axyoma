@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuesta de Clima y Condiciones Laborales</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    select, textarea {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 5px;
+      padding: 5px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Encuesta de Clima y Condiciones Laborales</h1>
+<form method="post">{% csrf_token %}
+    <p>Por favor, califica las siguientes afirmaciones del 1 al 5, donde:</p>
+
+    <!-- Generar 10 secciones con sus preguntas -->
+    <!-- Esta parte se generara programaticamente a partir del listado de preguntas que ya tenemos -->
+
+    <!-- SECCION DE COMENTARIOS -->
+    <div class="section">
+      <h2>Comentario adicional</h2>
+      <label for="comentarios">¿Hay algún aspecto que desees destacar (positivo o negativo)?</label>
+      <textarea name="comentarios" id="comentarios" rows="5"></textarea>
+    </div>
+
+    <button type="submit">Enviar encuesta</button>
+  </form>
+
+  <script>
+    const preguntas = {
+      "Seguridad e Higiene": [
+        "Me siento seguro realizando mis actividades laborales.",
+        "Cuento con el equipo de protección personal necesario (EPP).",
+        "El uniforme que me proporciona la empresa es cómodo y funcional.",
+        "Los procedimientos de seguridad están bien definidos y actualizados.",
+        "Hay capacitación regular sobre medidas de seguridad.",
+        "Las rutas de evacuación y salidas de emergencia están claramente marcadas.",
+        "Las instalaciones se mantienen limpias y en condiciones seguras."
+      ],
+      "Condiciones físicas y confortables": [
+        "El espacio de trabajo es adecuado en tamaño y distribución.",
+        "La ventilación e iluminación son suficientes.",
+        "El mobiliario (sillas, mesas) es ergonómico y en buen estado.",
+        "El área de descanso es cómoda y accesible.",
+        "Los baños están limpios y abastecidos.",
+        "La temperatura del ambiente laboral es confortable."
+      ],
+      "Servicios y facilidades": [
+        "La empresa proporciona comedor o acceso a comida higiénica.",
+        "La calidad de los alimentos ofrecidos es aceptable.",
+        "Existen servicios médicos o primeros auxilios disponibles.",
+        "Cuento con transporte o apoyo para llegar al centro de trabajo.",
+        "Las instalaciones permiten fácil acceso para personas con discapacidad."
+      ],
+      "Recursos para el trabajo": [
+        "Tengo acceso a los materiales y herramientas necesarios.",
+        "El software o sistemas de trabajo funcionan correctamente.",
+        "Recibo apoyo técnico cuando tengo problemas con mis herramientas.",
+        "Las instrucciones para realizar mi trabajo son claras."
+      ],
+      "Prestaciones y compensaciones": [
+        "Mi salario es justo en relación con mis responsabilidades.",
+        "Las prestaciones como seguro, aguinaldo, vacaciones, etc., están garantizadas.",
+        "La empresa cumple con pagos a tiempo.",
+        "Entiendo claramente mi esquema de compensación.",
+        "Tengo incentivos o bonos por rendimiento."
+      ],
+      "Comunicación y trato": [
+        "La comunicación entre empleados y supervisores es clara.",
+        "Recibo información relevante de forma oportuna.",
+        "Siento que mis opiniones son escuchadas.",
+        "Puedo expresar mis ideas sin temor a represalias.",
+        "Mis superiores son accesibles y abiertos al diálogo.",
+        "Existe un canal efectivo para reportar problemas o quejas."
+      ],
+      "Liderazgo y gestión": [
+        "Confío en las decisiones que toma la gerencia.",
+        "Mis líderes promueven el respeto y la ética.",
+        "Se reconocen los logros individuales y grupales.",
+        "Las tareas y metas están bien organizadas.",
+        "Los líderes dan el ejemplo con su conducta."
+      ],
+      "Desarrollo profesional": [
+        "Tengo oportunidades de crecimiento dentro de la empresa.",
+        "Recibo capacitación relevante para mejorar mi desempeño.",
+        "Hay procesos claros para ascensos o promociones.",
+        "Me siento motivado a desarrollarme profesionalmente."
+      ],
+      "Cultura organizacional": [
+        "Me siento identificado con los valores de la empresa.",
+        "Hay un ambiente de trabajo colaborativo.",
+        "Siento que pertenezco al equipo.",
+        "Se promueve la inclusión y la diversidad."
+      ],
+      "Equilibrio y bienestar personal": [
+        "La carga laboral me permite mantener equilibrio con mi vida personal.",
+        "Siento que puedo tomar descansos cuando los necesito.",
+        "No sufro de estrés constante o exceso de presión.",
+        "Me siento satisfecho trabajando en esta empresa."
+      ]
+    };
+
+    const form = document.querySelector("form");
+    const submitButton = document.querySelector("button");
+    const commentSection = document.querySelector(".section:last-of-type");
+
+    Object.entries(preguntas).forEach(([categoria, items], index) => {
+      const div = document.createElement("div");
+      div.className = "section";
+      const h2 = document.createElement("h2");
+      h2.textContent = `${index + 1}. ${categoria}`;
+      div.appendChild(h2);
+
+      items.forEach((pregunta, i) => {
+        const label = document.createElement("label");
+        label.setAttribute("for", `${categoria}_${i + 1}`);
+        label.textContent = pregunta;
+
+        const select = document.createElement("select");
+        select.name = `${categoria.replace(/\s+/g, '_').toLowerCase()}_${i + 1}`;
+        select.id = select.name;
+
+        const options = ["", "1", "2", "3", "4", "5"];
+        options.forEach((opt) => {
+          const option = document.createElement("option");
+          option.value = opt;
+          option.textContent = opt === "" ? "Selecciona..." : opt;
+          select.appendChild(option);
+        });
+
+        div.appendChild(label);
+        div.appendChild(select);
+      });
+
+      form.insertBefore(div, commentSection);
+    });
+  </script>
+</body>
+</html>

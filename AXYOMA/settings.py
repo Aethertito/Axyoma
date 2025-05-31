@@ -86,10 +86,15 @@ WSGI_APPLICATION = 'AXYOMA.wsgi.application'
 # Database: https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_DB', default='axyoma'),
+        'USER': config('POSTGRES_USER', default='axyoma_user'),
+        'PASSWORD': config('POSTGRES_PASSWORD', default='123456789'),
+        'HOST': config('POSTGRES_HOST', default='localhost'),
+        'PORT': config('POSTGRES_PORT', default='5432'),
     }
 }
+
 
 
 # Password validation: https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
