@@ -1,2 +1,9 @@
+{% include "public/components/header.html" %}
 
-{{ message }}
+<div style="display: flex;">
+    {% include "public/components/sidebar.html" %}
+    <main style="flex: 1; padding: 2rem;">
+        <h2>Bienvenido</h2>
+        <p>{{ message }}</p>
+    </main>
+</div>
