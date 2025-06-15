@@ -1,0 +1,351 @@
+
+/* -------------------------------- MAIN CSS -------------------------------- */
+
+@font-face {
+    font-family: 'Fenoyja';
+    src: url('../../fonts/Fervojo/Fervojo-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fenoyja';
+    src: url('../../fonts/Fervojo/Fervojo-Demi.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fenoyja';
+    src: url('../../fonts/Fervojo/Fervojo-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fenoyja';
+    src: url('../../fonts/Fervojo/Fervojo-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fenoyja';
+    src: url('../../fonts/Fervojo/Fervojo-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fenoyja';
+    src: url('../../fonts/Fervojo/Fervojo-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* -------------------------------------------------------------------------- */
+
+:root {
+    --color-solid-dark: rgb(30, 29, 40);                    /* #1E1D28; */
+    --color-solid-light: rgb(241, 239, 242);                /* #F1EFF2; */
+    --color-hard-dark: rgba(30, 29, 40, .7);
+    --color-hard-light: rgba(241, 239, 242, .7);
+    --color-soft-dark: rgba(30, 29, 40, .3);
+    --color-soft-light: rgba(241, 239, 242, .3);
+}
+
+.justifiEd-text {
+    hyphens: auto;
+    text-wrap: pretty;
+    text-align: justify;
+    hyphenate-limit-chars: 7;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* TODO: Crear cambio de estilos para modo claro/oscuro. */
+
+* {
+    box-sizing: border-box;
+    color: var(--color-solid-light);
+    font-family: 'Fenoyja', sans-serif;
+}
+
+html, body {
+    margin: 0; padding: 0;
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    background-color: var(--color-solid-dark);
+}
+
+body {
+    min-width: 100dvw; min-height: 100dvh;
+    display: flex; flex-direction: column;
+    scrollbar-width: none;
+}
+
+img {
+    user-select: none;
+    pointer-events: none;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-hard-light);
+    transition: all .24s ease-in-out;
+}
+
+a:hover {
+    color: var(--color-solid-light);
+}
+
+i {
+    transition: all .24s ease;
+}
+
+button {
+    cursor: pointer;
+    transition: all .24s ease;
+    border: none; outline: none;
+    box-shadow: none; background: none;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-header {
+    z-index: 100; top: 0;
+    width: 100%; height: 6.25rem;
+    position: sticky; align-items: center;
+    display: flex; flex-direction: column;
+
+    animation: headerAnimationBGC ease-in-out both;
+    backdrop-filter: blur(.5rem);
+    animation-timeline: scroll();
+    animation-range: 0 6.25rem;
+    user-select: none;
+}
+
+@keyframes headerAnimationBGC {
+    from { background-color: transparent;               }
+    to { background-color: var(--color-hard-dark);      }
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-header-content {
+    width: 80%; height: 100%;
+    display: flex; flex-direction: row;
+    align-items: center; justify-content: space-between;
+}
+
+.base-header-content a img {
+    width: auto; height: 4.75rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-header-nav {
+    width: auto; height: 100%;
+    display: flex; flex-direction: row;
+    align-items: center; justify-content: center;
+}
+
+.base-header-nav a {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: var(--size-base);
+    text-underline-offset: .375rem;
+
+    height: 60%; padding-inline: 1.75rem;
+    display: flex; align-items: center;
+}
+
+.base-header-nav a:hover {
+    text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-header-options {
+    display: flex; height: 100%;
+    align-items: center;
+}
+
+.base-header-options a {
+    height: 60%; margin-left: 2.75rem;
+    border: .125rem solid var(--color-hard-light);
+}
+
+.base-header-options a:hover {
+    text-decoration: none;
+    border-color: var(--color-solid-light);
+    background-color: var(--color-soft-light);
+}
+
+.base-nav-button {
+    display: none;
+    padding-inline: 1.5rem;
+    width: auto; height: 100%;
+}
+
+.base-nav-button i {
+    font-size: x-large;
+    color: var(--color-hard-light);
+}
+
+.base-nav-button:hover i {
+    color: var(--color-solid-light);
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-content {
+    align-self: center;
+    min-height: auto; flex-grow: 1;
+    display: flex; flex-direction: column;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-footer {
+    user-select: none;
+    padding: 2rem 0; align-items: center;
+    display: flex; flex-direction: column;
+}
+
+.base-footer-logo {
+    width: 80%;
+    display: flex; align-items: center;
+}
+
+.base-footer-line {
+    width: 100%; height: .125rem;
+    background-color: var(--color-soft-light);
+}
+
+.base-footer img {
+    margin: 0 2rem;
+    object-fit: contain;
+    width: auto; height: 5rem;
+}
+
+.base-footer-copyright {
+    font-size: small;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-footer-info {
+    width: 80%; margin-top: 2.75rem;
+    display: flex; align-items: center;
+}
+
+.base-footer-team, .base-footer-return, .base-footer-social-media {
+    height: 4rem; flex: 1;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-footer-team {
+    justify-content: center;
+    display: flex; flex-direction: column;
+}
+
+.base-footer-team small {
+    font-size: var(--size-sm);
+    color: var(--color-hard-light);
+}
+
+.base-footer-team strong {
+    font-size: large;
+    text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-footer-return {
+    align-items: center;
+    display: flex; justify-content: center;
+}
+
+.base-footer-return button {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: large;
+    color: var(--color-hard-light);
+
+    border: none; outline: none;
+    height: 100%; padding: 0 3rem;
+    border: .125rem solid var(--color-hard-light);
+}
+
+.base-footer-return button:hover {
+    color: var(--color-solid-light);
+    border-color: var(--color-solid-light);
+    background-color: var(--color-soft-light);
+}
+
+/* -------------------------------------------------------------------------- */
+
+.base-footer-social-media {
+    align-items: center;
+    display: flex; justify-content: right;
+}
+
+.base-footer-social-media a {
+    display: flex; height: 100%;
+    padding-inline: 1rem;
+    align-items: center;
+}
+
+.base-footer-social-media a i {
+    font-size: x-large;
+    color: var(--color-hard-light);
+}
+
+.base-footer-social-media a:hover i {
+    color: var(--color-solid-light);
+}
+
+/* -------------------------------------------------------------------------- */
+
+@media (min-width: 1920px) {
+    /* 1536px es igual al 80% de 1920px */
+    .base-header-content { width: 1536px;               }
+    .base-content { width: 1536px;                      }
+    .base-footer-logo { width: 1536px;                  }
+    .base-footer-info { width: 1536px;                  }
+}
+
+@media (max-width: 1024px) {
+    .base-header-content a img { height: 4.25rem;       }
+    .base-header-content { width: 90%;                  }
+    .base-footer-logo { width: 90%;                     }
+
+    .base-nav-link { display: none !important;          }
+    .base-nav-button { display: block;                  }
+    .base-header-options a { display: none;             }
+
+    .base-footer-info { flex-direction: column;         }
+
+    .base-footer-team {
+        align-items: center;
+        text-transform: uppercase;
+    }
+
+    .base-footer-team small, .base-footer-team strong {
+        text-align: center;
+    }
+
+    .base-footer-return { padding: 2rem 0;              }
+    .base-footer-return button { padding: 1.25rem 3rem; }
+
+    .base-footer-social-media a { padding: 1.25rem 1rem; }
+}
+
+@media (max-width: 768px) {
+    .base-header-content { width: 100%;                 }
+}
+
+/* -------------------------------------------------------------------------- */

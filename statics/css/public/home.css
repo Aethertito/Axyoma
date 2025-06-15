@@ -1,0 +1,246 @@
+
+/* -------------------------------------------------------------------------- */
+
+.hero-section {
+    margin-top: 3rem; padding: 0;
+    box-shadow: 1rem 1rem 0 0 var(--light-shadow);
+
+    width: 100%; aspect-ratio: 16 / 9;
+    display: flex; flex-direction: column;
+    align-items: left; justify-content: space-between;
+
+    background-image: linear-gradient(var(--dark-shadow), var(--dark-shadow)),
+        url('../../images/public/250525-LP001.webp');
+    background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+
+.hero-section-title {
+    width: max-content;
+    margin: 4rem 0 0 4rem;
+    padding: 1.2rem 2.4rem;
+    text-transform: uppercase;
+    color: var(--light); background-color: var(--dark);
+    box-shadow: 0 0 2rem .4rem var(--dark-shadow);
+}
+
+.hero-section-desc {
+    max-width: 60%;
+    padding: 1.2rem 2.4rem;
+    margin: 4rem 0 4rem 4rem;
+    background-color: var(--dark-shadow);
+    box-shadow: 0 0 2rem .4rem var(--dark-soft-shadow);
+
+    display: flex; flex-direction: column;
+}
+
+.hero-section strong {
+    color: var(--light);
+    font-size: 1.2rem; line-height: 1.5;
+    text-align: justify; text-wrap: pretty;
+    hyphenate-limit-chars: 7; hyphens: auto;
+}
+
+.hero-section a {
+    margin-top: 3rem;
+    background-color: #e67e22;
+
+    text-transform: uppercase;
+    padding: .8rem 2.4rem; width: max-content;
+}
+
+/* -------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hero-section-button {
+  margin-top: 1.5rem; /* Space above the button */
+  padding: 0.8rem 1.5rem;
+  background-color: var(--your-button-color); /* Use your desired button color */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: clamp(1rem, 2vw, 1.1rem); /* Responsive font size */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Optional: Basic responsiveness for smaller screens if needed */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1rem;
+    align-items: center; /* Center content on smaller screens */
+    text-align: center; /* Center text on smaller screens */
+  }
+
+  .hero-section-text {
+    max-width: 90%; /* Allow text to take more width on smaller screens */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main Content Container */
+    .container {
+        max-width: 1100px;
+        margin: 3em auto;
+        padding: 0 1.5em;
+    }
+
+    /* Hero Section - The main punch */
+
+    .hero-section h2 {
+        font-size: 3em;
+        margin-bottom: 0.5em;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .hero-section p {
+        font-size: 1.4em;
+        margin-bottom: 2em;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.95;
+    }
+    .btn {
+        display: inline-block;
+        background-color: #e67e22; /* Orange */
+        color: #ffffff;
+        padding: 1em 2.5em;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .btn:hover {
+        background-color: #d35400; /* Darker orange */
+        transform: translateY(-2px);
+    }
+
+    /* Features Section */
+    .features-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5em;
+        margin-bottom: 3em;
+    }
+    .feature-card {
+        background-color: #ffffff;
+        padding: 2em;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 5px solid #2980b9; /* Blue accent */
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .feature-card h3 {
+        color: #2c3e50;
+        font-size: 1.8em;
+        margin-bottom: 0.8em;
+        font-weight: 600;
+    }
+    .feature-card p {
+        font-size: 1.1em;
+        color: #555;
+    }
+    .feature-card .icon {
+        font-size: 3em; /* Placeholder for icon */
+        color: #e67e22;
+        margin-bottom: 0.5em;
+    }
+
+    /* Call to Action at bottom */
+    .cta-bottom {
+        background-color: #ffffff;
+        padding: 3em 2em;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        margin-bottom: 2em;
+    }
+    .cta-bottom h3 {
+        color: #2c3e50;
+        font-size: 2.5em;
+        margin-bottom: 1em;
+    }

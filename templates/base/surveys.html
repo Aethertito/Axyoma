@@ -1,0 +1,46 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang='es'>
+
+
+<head>
+    <!-- Metadatos -->
+    <meta charset='UTF-8' />
+    <meta name='author' content='Yukas Team (Ed Rubio)' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+    <!-- Título mostrado en la página. -->
+    <title>{% block title %}{% endblock title %} | Axyoma</title>
+
+
+    <!-- Ícono sagrado... -->
+    <link rel='shortcut icon' type='image/png' href='{% static "images/small-icon.png" %}'>
+
+    <!-- Estilos base de esta plantilla -->
+    <link href='{% static "css/base/public.css" %}' rel='stylesheet' />
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+
+    <!-- Estilos únicos de una determinada plantilla. -->
+    {% block childCSS %}{% endblock childCSS %}
+
+
+    <!-- Scripts base de esta plantilla -->
+    <script src='{% static "scripts/public.js" %}'></script>
+
+    <!-- Scripts únicos de una determinada plantilla. -->
+    {% block childScripts %}{% endblock childScripts %}
+</head>
+
+
+<body>
+    <main class='base-content'>
+        {% block content %}{% endblock content %}
+    </main>
+</body>
+
+
+</html>

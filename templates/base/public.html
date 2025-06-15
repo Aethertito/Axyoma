@@ -1,0 +1,102 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang='es'>
+
+
+<head>
+    <!-- Metadatos -->
+    <meta charset='UTF-8' />
+    <meta name='author' content='Yukas Team (Ed Rubio)' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+    <!-- Título mostrado en la página. -->
+    <title>{% block title %}{% endblock title %} | Axyoma</title>
+
+
+    <!-- Ícono sagrado... -->
+    <link rel='shortcut icon' type='image/png' href='{% static "images/small-icon.png" %}'>
+
+    <!-- Estilos base de esta plantilla -->
+    <link href='{% static "css/base/public.css" %}' rel='stylesheet' />
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+
+    <!-- Estilos únicos de una determinada plantilla. -->
+    {% block childCSS %}{% endblock childCSS %}
+
+
+    <!-- Scripts base de esta plantilla -->
+    <script src='{% static "scripts/public.js" %}'></script>
+
+    <!-- Scripts únicos de una determinada plantilla. -->
+    {% block childScripts %}{% endblock childScripts %}
+</head>
+
+
+<body>
+    <header class='base-header'><section class='base-header-content'>
+        <a href='{% url "public:HomeView" %}'>
+            <img src={% static 'images/full-logo.png' %} draggable='false' loading='lazy' alt='Axyoma' />
+        </a>
+
+        <nav class='base-header-nav'>
+            <a href='{% url "public:HomeView" %}' class='base-nav-link' id='base-home-link'>Inicio</a>
+            <a href='{% url "public:HomeView" %}' class='base-nav-link' id='base-about-link'>Nosotros</a>
+            <a href='{% url "public:HomeView" %}' class='base-nav-link' id='base-contact-link'>Contacto</a>
+
+            <div class='base-header-options'>
+                <a href='{% url "public:HomeView" %}'>Probar DEMO</a>
+
+                <button onclick='backToTop()' class='base-nav-button' id='base-nav-button' title='Menú de navegación'>
+                    <i class='bx bx-menu'></i>
+                </button>
+            </div>
+        </nav>
+    </section></header>
+
+    <main class='base-content'>
+        {% block content %}{% endblock content %}
+    </main>
+
+    <footer class='base-footer'>
+        <div class='base-footer-logo'>
+            <div class='base-footer-line'></div>
+            <img src={% static 'images/small-logo.png' %} alt='Axyoma'>
+            <div class='base-footer-line'></div>
+        </div>
+
+        <small class='base-footer-copyright'>Copyright © 2025 Axyoma</small>
+
+        <div class='base-footer-info'>
+            <div class='base-footer-team'>
+                <small>Desarrollo de marca y mercadotecnia por</small>
+                <strong>Los Yukas™</strong>
+            </div>
+
+            <div class='base-footer-return'>
+                <button onclick='backToTop()' title='Regresar arriba'>Regresar arriba</button>
+            </div>
+
+            <div class='base-footer-social-media'>
+                <a href='{% url "public:HomeView" %}'>
+                    <i class='bx bxl-facebook-circle base-icon-active'></i>
+                </a>
+                <a href='{% url "public:HomeView" %}'>
+                    <i class='bx bxl-instagram base-icon-active'></i>
+                </a>
+                <a href='{% url "public:HomeView" %}'>
+                    <i class='bx bxl-linkedin base-icon-active'></i>
+                </a>
+                <a href='{% url "public:HomeView" %}'>
+                    <i class='bx bxl-github base-icon-active'></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+
+</html>
