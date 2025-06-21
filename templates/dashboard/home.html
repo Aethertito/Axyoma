@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Inicio{% endblock title %}
+
 {% block childCSS %}
     <link href="{% static 'css/dashboard/home.css' %}" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -9,82 +10,97 @@
 {% endblock childCSS %}
 
 {% block content %}
-<div class="p-6">
-    <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
+<div class="flex h-screen w-screen">
+    <!-- 🧭 Sidebar -->
+    <aside class="w-64 h-full bg-gray-100 p-4 shadow-md overflow-y-auto">
+        <h3 class="text-lg font-semibold mb-4">Menú</h3>
+        <ul class="space-y-2">
+            {% for option in menu_options %}
+                <li>
+                    <a href="{{ option.url }}" class="block text-blue-600 hover:underline">
+                        {{ option.label }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
 
-    <!-- 📊 Gráfica de Pastel -->
-    <div class="w-full max-w-md mb-8">
-        <canvas id="myPieChart" width="400" height="400"></canvas>
-    </div>
+    <!-- 📊 Contenido principal -->
+    <div class="flex-1 p-6 overflow-y-auto">
+        <h2 class="text-2xl font-bold mb-4">Dashboard</h2>
 
-    <!-- 📊 Gráfica de Barras -->
-    <div class="w-full max-w-3xl mb-8">
-        <canvas id="myBarChart" width="600" height="400"></canvas>
-    </div>
+        <!-- 📊 Gráfica de Pastel -->
+        <div class="w-full max-w-md mb-8">
+            <canvas id="myPieChart" width="400" height="400"></canvas>
+        </div>
 
-    <script>
-        const pieData = {{ chart_data|safe }};
+        <!-- 📊 Gráfica de Barras -->
+        <div class="w-full max-w-3xl mb-8">
+            <canvas id="myBarChart" width="600" height="400"></canvas>
+        </div>
 
-        // Pie Chart
-        const ctxPie = document.getElementById('myPieChart');
-        new Chart(ctxPie, {
-            type: 'pie',
-            data: {
-                labels: ['Aprobados', 'Reprobados', 'Pendientes'],
-                datasets: [{
-                    data: pieData,
-                    backgroundColor: ['#4ade80', '#f87171', '#facc15'],
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
+        <script>
+            const pieData = {{ chart_data|safe }};
 
-        // Bar Chart
-        const ctxBar = document.getElementById('myBarChart');
-        new Chart(ctxBar, {
-            type: 'bar',
-            data: {
-                labels: ['Aprobados', 'Reprobados', 'Pendientes'],
-                datasets: [{
-                    label: 'Resultados',
-                    data: pieData,
-                    backgroundColor: ['#4ade80', '#f87171', '#facc15'],
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+            const ctxPie = document.getElementById('myPieChart');
+            new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: ['Aprobados', 'Reprobados', 'Pendientes'],
+                    datasets: [{
+                        data: pieData,
+                        backgroundColor: ['#4ade80', '#f87171', '#facc15'],
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+
+            const ctxBar = document.getElementById('myBarChart');
+            new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Aprobados', 'Reprobados', 'Pendientes'],
+                    datasets: [{
+                        label: 'Resultados',
+                        data: pieData,
+                        backgroundColor: ['#4ade80', '#f87171', '#facc15'],
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-    </script>
+            });
+        </script>
 
-    <!-- 📋 Tabla de Usuarios -->
-    <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200 border border-gray-300 rounded">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
-                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Edad</th>
-                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">País</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                {% for user in users %}
-                <tr>
-                    <td class="px-4 py-2 whitespace-nowrap">{{ user.name }}</td>
-                    <td class="px-4 py-2 whitespace-nowrap">{{ user.age }}</td>
-                    <td class="px-4 py-2 whitespace-nowrap">{{ user.country }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <!-- 📋 Tabla de Usuarios -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 border border-gray-300 rounded">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Edad</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">País</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for user in users %}
+                    <tr>
+                        <td class="px-4 py-2 whitespace-nowrap">{{ user.name }}</td>
+                        <td class="px-4 py-2 whitespace-nowrap">{{ user.age }}</td>
+                        <td class="px-4 py-2 whitespace-nowrap">{{ user.country }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 {% endblock content %}
